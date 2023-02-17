@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
     let sqlText = 'SELECT * FROM "images" ORDER BY "id"'
     pool.query(sqlText)
     .then((dbRes) => {
-        res.send(dbRes);
+        // console.log(dbRes)
+        res.send(dbRes.rows);
     })
     .catch((err) => {
         console.error(err);
