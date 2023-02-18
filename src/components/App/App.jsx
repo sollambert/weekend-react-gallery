@@ -10,9 +10,12 @@ function App() {
   const [images, setImages] = useState([]);
 
   const uploadImage = (name, file, cb) => {
-    axios.post('/gallery', {name, file}, {
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('file', file);
+    axios.post('/gallery', formData, {
       headers: {
-        'Content-Type': file.type
+        'Content-Type': 'multipart/form-data'
       }
     })
     .then((response) => {
@@ -54,9 +57,7 @@ function App() {
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
       <ImageForm upload={uploadImage} />
-      <p>Gallery goes here</p>
       <ImageList images={images} addLike={addLike}/>
-      {/* <img src="images/goat_small.jpg" /> */}
     </div>
   );
 }

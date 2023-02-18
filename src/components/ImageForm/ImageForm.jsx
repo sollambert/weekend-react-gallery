@@ -1,13 +1,15 @@
 import TextInput from "../Inputs/TextInput";
 import FileInput from "../Inputs/FileInput";
 import SubmitButton from "../Inputs/SubmitButton";
-import {useState} from 'react';
+import {useState, useRef} from 'react';
+import React from 'react';
 
 
 function ImageForm({upload}) {
 
+    const fileRef = useRef(null);
     const [nameBuffer, setNameBuffer] = useState('');
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState('');
 
     const handleSubmit = (event) => {
         console.log('test')
@@ -24,14 +26,14 @@ function ImageForm({upload}) {
     }
 
     const clearInputs = () => {
-        setValue('');
-        setFile(null);
+        setNameBuffer('');
+        fileRef.current.value = null;
     }
 
     return (
         <form onSubmit={handleSubmit} action="/gallery" method="post" encType="multipart/form-data">
             <TextInput name="File Name" value={nameBuffer} setValue={handleNameBuffer} placeholder="Enter file name..." />
-            <FileInput setFile={handleUpload}/>
+            <FileInput fileRef={fileRef} setFile={handleUpload} value={file} />
             <SubmitButton/>
         </form>
     )
