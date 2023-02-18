@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
     //   cb(null, file.fieldname + '-' + uniqueSuffix)
-        cb(null, createFileName(req.body.name)  + '.' + file.mimetype.split("/")[1])
+        cb(null, createFileName(req.body.name).replace(' ', '-')  + '.' + file.mimetype.split("/")[1])
     }
   })
   
@@ -55,7 +55,7 @@ router.post('/', imgUpload, (req, res) => {
     //console.log(req.body)
     let sqlText = `INSERT INTO "images" ("path", "description")
         VALUES($1, $2);`;
-    pool.query(sqlText,[`images/${file.filename}`, 'test'])
+    pool.query(sqlText,[`images/${file.filename}`, req.body.description])
     .then((dbRes) => {
         res.sendStatus(201);
     })

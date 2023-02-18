@@ -9,9 +9,10 @@ function App() {
 
   const [images, setImages] = useState([]);
 
-  const uploadImage = (name, file, cb) => {
+  const uploadImage = (fileInfo, file, cb) => {
     let formData = new FormData();
-    formData.append('name', name);
+    formData.append('name', fileInfo.name);
+    formData.append('description', fileInfo.description);
     formData.append('file', file);
     axios.post('/gallery', formData, {
       headers: {
