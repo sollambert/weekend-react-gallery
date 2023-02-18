@@ -4,10 +4,11 @@ img {
     width: auto;
     height: auto;
 }
-/* 
-button {
-    margin-top: 1em;
-} */
+
+.button-stack {
+    padding-right: 1em;
+    padding-left: 1em;
+}
 .img-description {
     padding: .5em;
 }

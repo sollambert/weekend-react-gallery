@@ -3,6 +3,12 @@ import FileInput from "../Inputs/FileInput";
 import SubmitButton from "../Inputs/SubmitButton";
 import {useState, useRef} from 'react';
 import React from 'react';
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
+import Input from "@mui/material/Input"
+import Stack from "@mui/material/Stack"
+
+import './ImageForm.css'
 
 
 function ImageForm({upload}) {
@@ -38,10 +44,14 @@ function ImageForm({upload}) {
 
     return (
         <form onSubmit={handleSubmit} action="/gallery" method="post" encType="multipart/form-data">
-            <TextInput name="File Name" value={nameBuffer} setValue={handleNameBuffer} placeholder="Enter file name..." />
-            <TextInput name="Description" value={descBuffer} setValue={handleDescBuffer} placeholder="Enter file description..." />
-            <FileInput fileRef={fileRef} setFile={handleUpload} value={file} />
-            <SubmitButton/>
+            <Stack className="input-stack" direction="row"spacing={1}>
+                <TextField label="File Name" value={nameBuffer} onChange={handleNameBuffer} />
+                <TextField label="Description" value={descBuffer} onChange={handleDescBuffer} />
+            </Stack>
+            <Stack className="input-stack" direction="row"spacing={1}>
+                <Button color="success" variant="contained" type="submit">SUBMIT</Button>
+                <Input type="file" inputRef={fileRef} onChange={handleUpload} />
+            </Stack>
         </form>
     )
 }
