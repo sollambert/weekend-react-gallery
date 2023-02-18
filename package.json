@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.9",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "multer": "^1.4.5-lts.1",
