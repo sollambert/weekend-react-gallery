@@ -19,7 +19,6 @@ function ImageForm({upload}) {
     const [file, setFile] = useState('');
 
     const handleSubmit = (event) => {
-        console.log('test')
         event.preventDefault();
         upload({name: nameBuffer, description: descBuffer}, file, clearInputs);
     }

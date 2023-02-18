@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const galleryItems = require('../modules/gallery.data');
 const pool = require('../modules/pool');
 const multer = require('multer');
 
@@ -49,20 +48,24 @@ router.get('/', (req, res) => {
 const imgUpload = upload.fields([{name: 'file', maxCount: 1}])
 router.post('/', imgUpload, (req, res) => {
 
-    let file = req.files['file'][0];
-    //file.filename = createFileName(req.body.name);
-
-    //console.log(req.body)
-    let sqlText = `INSERT INTO "images" ("path", "description")
-        VALUES($1, $2);`;
-    pool.query(sqlText,[`images/${file.filename}`, req.body.description])
-    .then((dbRes) => {
-        res.sendStatus(201);
-    })
-    .catch((err) => {
-        res.sendStatus(500);
-        console.error(err);
-    })
+    if (req.files['file'] == undefined || req.body.name == '' || req.body.description == '') {
+        res.sendStatus(400);
+    } else {
+        let file = req.files['file'][0];
+        //file.filename = createFileName(req.body.name);
+    
+        //console.log(req.body)
+        let sqlText = `INSERT INTO "images" ("path", "description")
+            VALUES($1, $2);`;
+        pool.query(sqlText,[`images/${file.filename}`, req.body.description])
+        .then((dbRes) => {
+            res.sendStatus(201);
+        })
+        .catch((err) => {
+            res.sendStatus(500);
+            console.error(err);
+        })
+    }
 })
 
 router.delete('/:id', (req, res) => {
