@@ -18,8 +18,8 @@ function App() {
       });
   }
 
-  const addLike = (id) => {
-    axios.put(`/gallery/like/${id}`)
+  const addLike = (id, likes) => {
+    axios.put(`/gallery/like/${id}`, likes)
     .then((response) => {
       getImages();
     })

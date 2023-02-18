@@ -10,7 +10,7 @@ function ImageItem({ img, addLike }) {
     }
 
     const handleLike = () => {
-        addLike(img.id);
+        addLike(img.id, img.likes + 1);
     }
 
     return (
