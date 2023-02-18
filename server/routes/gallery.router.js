@@ -65,6 +65,19 @@ router.post('/', imgUpload, (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    let sqlText = `DELETE FROM "images"
+    WHERE id = $1`;
+
+    pool.query(sqlText, [req.params.id])
+    .then((dbRes) => {
+        res.sendStatus(204);
+    })
+    .catch((err) => {
+        console.error(err);
+    })
+})
+
 function createFileName(text) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     return text + uniqueSuffix;

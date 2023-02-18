@@ -28,6 +28,16 @@ function App() {
     })
   }
 
+  const deleteImage = (id) => {
+    axios.delete(`/gallery/${id}`)
+    .then((response) => {
+      getImages();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
   const getImages = () => {
     axios.get('/gallery')
       .then((response) => {
@@ -58,7 +68,7 @@ function App() {
         <h1 className="App-title">Gallery of My Life</h1>
       </header>
       <ImageForm upload={uploadImage} />
-      <ImageList images={images} addLike={addLike}/>
+      <ImageList images={images} addLike={addLike} deleteImage={deleteImage}/>
     </div>
   );
 }
