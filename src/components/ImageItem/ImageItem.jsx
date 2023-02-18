@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ImageItem.css';
 
-function ImageItem({ img, addLike }) {
+function ImageItem({ img, addLike, deleteImage }) {
 
     const [display, setDisplay] = useState(true);
 
@@ -13,12 +13,17 @@ function ImageItem({ img, addLike }) {
         addLike(img.id, img.likes + 1);
     }
 
+    const handleDelete = () => {
+        deleteImage(img.id);
+    }
+
     return (
         <div className="ImageItem" >
             <div onClick={handleClick} className="image-container">
                 {display ? <img src={img.path} ></img> : <div className="img-description">{img.description}</div>}
             </div>
             <button onClick={handleLike}>love it!</button>
+            <button onClick={handleDelete}>delete it!</button>
             {img.likes != 0 ?
             <p className="likes">{`${img.likes} people love this!`}</p> : <p className="likes">{`no one loves this :[`}</p>}
         </div>
