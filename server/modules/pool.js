@@ -4,6 +4,8 @@ const pool = new pg.Pool({
   host: "localhost",
   port: 5432,
   database: "react_gallery",
+  user: 'postgres',
+  password: 'password'
 });
 
 module.exports = pool;
