@@ -7,7 +7,7 @@ function ImageList({images, addLike}) {
     return (
         <div className="ImageList">
             {images.map((image) => {
-                return <ImageItem key={image.id} img={image} addLike={addLike}/>
+                return <ImageItem key={image.id} img={image} addLike={addLike} />
             })}
         </div>
     )

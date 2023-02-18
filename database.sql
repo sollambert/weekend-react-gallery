@@ -1,5 +1,5 @@
 create table "images" (
-    "id" SERIAL INT,
+    "id" SERIAL primary,
     "path" VARCHAR (80),
     "description" TEXT,
     "likes" INT default 0
