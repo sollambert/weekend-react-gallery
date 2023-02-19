@@ -52,9 +52,6 @@ router.post('/', imgUpload, (req, res) => {
         res.sendStatus(400);
     } else {
         let file = req.files['file'][0];
-        //file.filename = createFileName(req.body.name);
-    
-        //console.log(req.body)
         let sqlText = `INSERT INTO "images" ("path", "description")
             VALUES($1, $2);`;
         pool.query(sqlText,[`images/${file.filename}`, req.body.description])
